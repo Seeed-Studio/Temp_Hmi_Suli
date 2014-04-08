@@ -33,12 +33,12 @@ uint8 dht_measure()
     uint8 j = 0, i;
     unsigned long currenttime;
 
-    // pull the pin high and wait 250 milliseconds
+    // pull the pin high and wait 250 suli_milliseconds
     suli_pin_write(&__pin, HAL_PIN_HIGH);
 
     suli_delay_ms(250);
 
-    currenttime = millis();
+    currenttime = suli_millis();
     if (currenttime < _lastreadtime) {
         // ie there was a rollover
         _lastreadtime = 0;
@@ -50,11 +50,11 @@ uint8 dht_measure()
     }
     firstreading = false;
 
-    _lastreadtime = millis();
+    _lastreadtime = suli_millis();
 
     data[0] = data[1] = data[2] = data[3] = data[4] = 0;
 
-    // now pull it low for ~20 milliseconds
+    // now pull it low for ~20 suli_milliseconds
 
     suli_pin_dir(&__pin, HAL_PIN_OUTPUT);
     suli_pin_write(&__pin, HAL_PIN_LOW);
